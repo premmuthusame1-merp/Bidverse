@@ -25,7 +25,7 @@ export const NAV_ITEMS: Record<NavRole, NavItem[]> = {
   ],
   dealer: [
     { key: "home", icon: "⌂", label: "Home", href: "/dealer/home" },
-    { key: "post", icon: "＋", label: "Post", href: "/dealer/post-product" },
+    { key: "post", icon: "+", label: "Post", href: "/dealer/post-product" },
     { key: "products", icon: "▤", label: "Products", href: "/dealer/products" },
     { key: "settings", icon: "⚙", label: "Settings", href: "/dealer/settings" },
   ],

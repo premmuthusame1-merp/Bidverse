@@ -194,7 +194,7 @@ export default function BuyerAuctionsScreen() {
 
         <PrimaryButton
           label="Start a new auction"
-          icon="＋"
+          icon="+"
           onPress={() => router.push("/user/new-auction")}
         />
       </ScrollView>

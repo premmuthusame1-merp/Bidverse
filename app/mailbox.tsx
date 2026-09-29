@@ -57,7 +57,7 @@ export default function MailboxScreen() {
         {mails.length === 0 ? (
           <Card>
             <EmptyState
-              icon="📭"
+              icon=""
               title="No e-mails yet"
               body={
                 address

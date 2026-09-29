@@ -585,7 +585,7 @@ export function KeyValue({ label, value }: { label: string; value: string }) {
   );
 }
 
-export function Fab({ label = "＋", onPress }: { label?: string; onPress: () => void }) {
+export function Fab({ label = "+", onPress }: { label?: string; onPress: () => void }) {
   return (
     <Pressable onPress={onPress} style={({ pressed }) => [styles.fab, pressed && styles.pressed]}>
       <Text style={styles.fabText}>{label}</Text>

@@ -113,7 +113,7 @@ export default function DealerRegisterScreen() {
         <Text style={styles.successTitle}>Registration submitted</Text>
         <InfoCard
           tone="warning"
-          icon="⏳"
+          icon="◔"
           title="Will get the login after the approve within 24 Hours"
           body="Our super admin will verify your PAN, Aadhaar, GST and store documents. Once approved, your username and a temporary password are e-mailed to you."
         />
@@ -180,7 +180,7 @@ export default function DealerRegisterScreen() {
 
         {step === 2 ? (
           <>
-            <Text style={styles.heading}>📋 Documents</Text>
+            <Text style={styles.heading}>Documents</Text>
             <Field
               label="PAN CARD NUMBER *"
               value={form.panCardNumber}
@@ -239,7 +239,7 @@ export default function DealerRegisterScreen() {
 
         {step === 3 ? (
           <>
-            <Text style={styles.heading}>🏬 Store details</Text>
+            <Text style={styles.heading}>Store details</Text>
             <Field label="STORE NAME *" value={form.storeName} onChangeText={(v) => set("storeName", v)} placeholder="e.g. TechHub Chennai" />
             <Field label="ADDRESS *" value={form.address} onChangeText={(v) => set("address", v)} placeholder="Street, area" multiline />
             <View style={styles.twoCol}>
@@ -341,7 +341,7 @@ function UploadRow({
     <Pressable onPress={onPress} style={styles.uploadCard}>
       <View style={{ flex: 1 }}>
         <Text style={styles.uploadTitle}>{label}</Text>
-        <Text style={styles.helper}>{uploaded ? value ?? "Attached" : "📤 Tap to upload document"}</Text>
+        <Text style={styles.helper}>{uploaded ? value ?? "Attached" : "Tap to upload document"}</Text>
       </View>
       {uploaded ? <Badge tone="verified">✓ Added</Badge> : <Badge tone="muted">Pending</Badge>}
     </Pressable>

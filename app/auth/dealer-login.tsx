@@ -64,7 +64,7 @@ export default function DealerLoginScreen() {
 
         {error ? <InfoCard tone="warning" title={error} /> : null}
 
-        <PrimaryButton label="Login" icon="🔐" onPress={submit} />
+        <PrimaryButton label="Login" icon="" onPress={submit} />
 
         <Pressable onPress={() => router.push("/auth/forgot-password?role=dealer")} style={styles.forgot}>
           <Text style={styles.link}>Forgot password / Reset password</Text>

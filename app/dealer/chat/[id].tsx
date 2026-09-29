@@ -152,7 +152,7 @@ export default function DealerChatRoom() {
           {status === "scheduled" ? (
             <InfoCard
               tone="warning"
-              icon="⏳"
+              icon="◔"
               title="Auction starts soon"
               body={`Bidding opens in ${compactCountdown(auction.startsAt - now)}. You can still chat with the buyer.`}
             />

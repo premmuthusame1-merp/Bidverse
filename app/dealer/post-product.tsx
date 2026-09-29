@@ -172,7 +172,7 @@ export default function PostProductScreen() {
                   {isSpecialDeal ? <Text style={styles.checkmark}>✓</Text> : null}
                 </View>
                 <View style={{ flex: 1 }}>
-                  <Text style={styles.toggleTitle}>⭐ Special deal</Text>
+                  <Text style={styles.toggleTitle}>★ Special deal</Text>
                   <Text style={kitStyles.cardMeta}>
                     Adds a days-left countdown and lists the product under Special deals for buyers.
                   </Text>
@@ -201,7 +201,7 @@ export default function PostProductScreen() {
 
             {error ? <InfoCard tone="danger" title={error} /> : null}
 
-            <PrimaryButton label="Publish product" icon="＋" onPress={submit} />
+            <PrimaryButton label="Publish product" icon="+" onPress={submit} />
 
             {myProducts.length > 0 ? (
               <>

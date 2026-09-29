@@ -89,7 +89,7 @@ export default function ForgotPasswordScreen() {
         {step === 1 ? (
           <>
             <InfoCard
-              icon="📧"
+              icon="✉"
               title="We will e-mail a verification code"
               body="Enter your registered e-mail or dealer username. The code is valid for 10 minutes."
             />
@@ -117,7 +117,7 @@ export default function ForgotPasswordScreen() {
             {demoCode ? (
               <InfoCard
                 tone="warning"
-                icon="🔑"
+                icon=""
                 title={`Sandbox code: ${demoCode}`}
                 body="This build has no SMTP server, so the e-mail is delivered to the in-app mailbox instead."
               />
@@ -152,7 +152,7 @@ export default function ForgotPasswordScreen() {
         {error ? <InfoCard tone="danger" title={error} /> : null}
 
         <PrimaryButton
-          label={step === 1 ? "📤 Send Code" : step === 2 ? "Verify Code" : "Save New Password"}
+          label={step === 1 ? "Send Code" : step === 2 ? "Verify Code" : "Save New Password"}
           onPress={step === 1 ? sendCode : step === 2 ? verify : save}
         />
       </FormBlock>

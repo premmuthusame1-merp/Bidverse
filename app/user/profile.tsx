@@ -63,7 +63,7 @@ export default function BuyerProfileScreen() {
         {[
           { icon: "♜", title: "My Auctions", sub: "Live and previous auctions", to: "/user/auctions" },
           { icon: "★", title: "Special Deals", sub: "Deals with days-left counters", to: "/user/special-deals" },
-          { icon: "＋", title: "Start an auction", sub: "Post a new requirement", to: "/user/new-auction" },
+          { icon: "+", title: "Start an auction", sub: "Post a new requirement", to: "/user/new-auction" },
           { icon: "✉", title: "Mailbox", sub: "E-mails we sent you", to: "/mailbox" },
           { icon: "◔", title: "Notifications", sub: "Deal alerts and updates", to: "/notifications" },
         ].map((item) => (

@@ -357,11 +357,13 @@ export function createSeedState(now = Date.now()): SeedState {
       budget: 145000,
       referralLink: "https://www.apple.com/in/iphone-15-pro/",
       status: "live",
-      publishedAt: now - 2 * HOUR,
-      startsAt: now - 2 * HOUR + AUCTION_START_DELAY_MS,
-      endsAt: now + 2 * HOUR + 45 * MINUTE,
-      firstBidAt: now - 95 * MINUTE,
-      biddingEndsAt: now - 95 * MINUTE + REVERSE_BID_WINDOW_MS + 20 * MINUTE,
+      publishedAt: now - 14 * MINUTE,
+      startsAt: now - 14 * MINUTE + AUCTION_START_DELAY_MS,
+      endsAt: now + 3 * 24 * HOUR,
+      // First bid landed 3 minutes ago, so the 20 minute reverse-bidding
+      // window is still open when the app is first opened.
+      firstBidAt: now - 3 * MINUTE,
+      biddingEndsAt: now - 3 * MINUTE + REVERSE_BID_WINDOW_MS,
       extensionDays: 0,
     },
     {
@@ -375,11 +377,11 @@ export function createSeedState(now = Date.now()): SeedState {
       budget: 210000,
       referralLink: "https://www.royalenfield.com/in/en/home/",
       status: "live",
-      publishedAt: now - 6 * HOUR,
-      startsAt: now - 6 * HOUR + AUCTION_START_DELAY_MS,
+      publishedAt: now - 12 * MINUTE,
+      startsAt: now - 12 * MINUTE + AUCTION_START_DELAY_MS,
       endsAt: now + 18 * HOUR,
-      firstBidAt: now - 5 * HOUR,
-      biddingEndsAt: now - 5 * HOUR + REVERSE_BID_WINDOW_MS + 6 * HOUR,
+      firstBidAt: now - 2 * MINUTE,
+      biddingEndsAt: now - 2 * MINUTE + REVERSE_BID_WINDOW_MS,
       extensionDays: 0,
     },
     {
@@ -446,7 +448,7 @@ export function createSeedState(now = Date.now()): SeedState {
       specialMentions: "Sealed India unit, 1-year Apple warranty",
       isLatest: true,
       withdrawn: false,
-      createdAt: now - 95 * MINUTE,
+      createdAt: now - 3 * MINUTE,
     },
     {
       id: "deal-2",
@@ -457,7 +459,7 @@ export function createSeedState(now = Date.now()): SeedState {
       specialMentions: "Bill with GST input credit",
       isLatest: true,
       withdrawn: false,
-      createdAt: now - 80 * MINUTE,
+      createdAt: now - 150 * 1000,
     },
     {
       id: "deal-3",
@@ -468,7 +470,7 @@ export function createSeedState(now = Date.now()): SeedState {
       specialMentions: "Price valid if booked today",
       isLatest: true,
       withdrawn: false,
-      createdAt: now - 46 * MINUTE,
+      createdAt: now - 2 * MINUTE,
     },
     {
       id: "deal-4",
@@ -479,7 +481,7 @@ export function createSeedState(now = Date.now()): SeedState {
       specialMentions: "Showroom condition, 8,400 km run",
       isLatest: true,
       withdrawn: false,
-      createdAt: now - 5 * HOUR,
+      createdAt: now - 2 * MINUTE,
     },
     {
       id: "deal-5",
@@ -490,7 +492,7 @@ export function createSeedState(now = Date.now()): SeedState {
       specialMentions: "Includes 1-year roadside assistance",
       isLatest: true,
       withdrawn: false,
-      createdAt: now - 3 * HOUR,
+      createdAt: now - 70 * 1000,
     },
     {
       id: "deal-9",
@@ -514,7 +516,7 @@ export function createSeedState(now = Date.now()): SeedState {
       senderName: "Arun Prakash",
       body: "Auction is live. Please share your best price with freebies.",
       kind: "text",
-      createdAt: now - 100 * MINUTE,
+      createdAt: now - 13 * MINUTE,
     },
     {
       id: "msg-2",
@@ -525,7 +527,7 @@ export function createSeedState(now = Date.now()): SeedState {
       body: "Deal posted: ₹1,32,900 · Free 20W adapter + tempered glass",
       kind: "deal",
       dealId: "deal-1",
-      createdAt: now - 95 * MINUTE,
+      createdAt: now - 3 * MINUTE,
     },
     {
       id: "msg-3",
@@ -536,7 +538,7 @@ export function createSeedState(now = Date.now()): SeedState {
       body: "Deal posted: ₹1,31,500 · Free AirPods case + screen guard",
       kind: "deal",
       dealId: "deal-2",
-      createdAt: now - 80 * MINUTE,
+      createdAt: now - 150 * 1000,
     },
     {
       id: "msg-4",
@@ -546,7 +548,7 @@ export function createSeedState(now = Date.now()): SeedState {
       senderName: "TechHub Chennai",
       body: "We can also add accidental damage cover for one year if you confirm today.",
       kind: "text",
-      createdAt: now - 60 * MINUTE,
+      createdAt: now - 130 * 1000,
     },
     {
       id: "msg-5",
@@ -557,7 +559,7 @@ export function createSeedState(now = Date.now()): SeedState {
       body: "Deal posted: ₹1,29,990 · Free 20W adapter + tempered glass + 1-year accidental cover",
       kind: "deal",
       dealId: "deal-3",
-      createdAt: now - 46 * MINUTE,
+      createdAt: now - 2 * MINUTE,
     },
     {
       id: "msg-6",
@@ -568,7 +570,7 @@ export function createSeedState(now = Date.now()): SeedState {
       body: "Deal posted: ₹1,96,500 · Free first service + helmet",
       kind: "deal",
       dealId: "deal-4",
-      createdAt: now - 5 * HOUR,
+      createdAt: now - 2 * MINUTE,
     },
     {
       id: "msg-7",
@@ -579,7 +581,7 @@ export function createSeedState(now = Date.now()): SeedState {
       body: "Deal posted: ₹1,89,900 · Free first service + helmet + crash guard",
       kind: "deal",
       dealId: "deal-5",
-      createdAt: now - 3 * HOUR,
+      createdAt: now - 70 * 1000,
     },
   ];
 
@@ -592,7 +594,7 @@ export function createSeedState(now = Date.now()): SeedState {
       body: "TechHub Chennai offered ₹1,29,990 with freebies.",
       auctionId: "auc-1",
       read: false,
-      createdAt: now - 46 * MINUTE,
+      createdAt: now - 2 * MINUTE,
     },
     {
       id: "ntf-2",

@@ -139,7 +139,7 @@ export default function AdminDashboardScreen() {
                   onPress={() => notify(doc, "Document preview is available in the mobile build.")}
                   style={styles.docChip}
                 >
-                  <Text style={styles.docChipText}>📄 {doc}</Text>
+                  <Text style={styles.docChipText}>{doc}</Text>
                 </Pressable>
               ))}
             </View>

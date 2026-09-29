@@ -135,3 +135,24 @@ Reset the dataset at any time from the splash sheet, the profile screen or the a
 `Electronics` (Phones, Laptops, Television, Washing Machine, Refrigerator, Air Conditioner,
 Watches, Kitchen Appliances, Utility Appliances), `Vehicles` (Bikes, Cars, Heavy Vehicles),
 `Refurbished`, `Cameras & Optics`, `Home & Furniture`.
+
+---
+
+## Seeing the app
+
+The dev server (`pnpm dev:metro`) serves the whole application in the browser at
+`http://localhost:8081` — this is the live preview shown in Arena.
+
+`docs/gallery.html` is a browsable walkthrough of **47 real screenshots** taken from that
+running build in a headless Chromium browser (420 × 900 mobile viewport). Open it in any
+browser, or regenerate it after UI changes:
+
+```bash
+node scripts/capture-buyer.mjs    # splash, auth, buyer flows   -> docs/screenshots
+node scripts/capture-dealer.mjs   # dealer + admin flows        -> docs/screenshots
+node scripts/build-gallery.mjs    # rebuilds docs/gallery.html
+```
+
+The capture scripts drive the real UI: they register a dealer, sign in as the super admin,
+approve the dealer, read the temporary password out of the issued e-mail, and then complete
+the forced password reset — so the screenshots always reflect the actual flows.

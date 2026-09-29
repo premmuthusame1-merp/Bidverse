@@ -127,7 +127,7 @@ export function DealRow({
 
       {deal.freebies || deal.specialMentions ? (
         <View style={styles.offerFooter}>
-          {deal.freebies ? <Text style={styles.perk}>✦ {deal.freebies}</Text> : <View />}
+          {deal.freebies ? <Text style={styles.perk}>★ {deal.freebies}</Text> : <View />}
           {deal.specialMentions ? (
             <Text style={styles.mention} numberOfLines={2}>
               {deal.specialMentions}
@@ -231,7 +231,7 @@ export function MessageBubble({
           </Text>
           <Badge tone="dark">REVERSE BID</Badge>
         </View>
-        {deal?.freebies ? <Text style={styles.dealBubblePerk}>✦ {deal.freebies}</Text> : null}
+        {deal?.freebies ? <Text style={styles.dealBubblePerk}>★ {deal.freebies}</Text> : null}
         {deal?.specialMentions ? <Text style={styles.dealBubbleNote}>{deal.specialMentions}</Text> : null}
         <Text style={styles.systemTime}>{relativeTime(message.createdAt)}</Text>
       </Pressable>

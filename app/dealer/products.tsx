@@ -109,7 +109,7 @@ export default function DealerProductsScreen() {
           </Card>
         ))}
 
-        <PrimaryButton label="Post another product" icon="＋" onPress={() => router.push("/dealer/post-product")} />
+        <PrimaryButton label="Post another product" icon="+" onPress={() => router.push("/dealer/post-product")} />
       </ScrollView>
       <Fab onPress={() => router.push("/dealer/post-product")} />
     </AppShell>

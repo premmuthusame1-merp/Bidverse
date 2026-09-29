@@ -73,7 +73,7 @@ export default function NewAuctionScreen() {
       <TopBar title="Start New Auction" onBack={() => router.back()} badge={<Badge tone="brand">REVERSE</Badge>} />
       <ScrollView contentContainerStyle={kitStyles.scroll} keyboardShouldPersistTaps="handled">
         <InfoCard
-          icon="💡"
+          icon=""
           title="Post what you need — dealers compete to give you the best price"
           body="Your product details are pushed only to stores registered for the matching category."
         />
@@ -181,7 +181,7 @@ export default function NewAuctionScreen() {
 
         {error ? <InfoCard tone="danger" title={error} /> : null}
 
-        <PrimaryButton label="🚀 Publish Auction" onPress={submit} />
+        <PrimaryButton label="Publish Auction" onPress={submit} />
 
         <Pressable onPress={() => router.back()} style={styles.cancel}>
           <Text style={styles.cancelText}>Cancel</Text>

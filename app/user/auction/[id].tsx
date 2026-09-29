@@ -143,7 +143,7 @@ export default function BuyerAuctionRoom() {
           {status === "scheduled" ? (
             <InfoCard
               tone="warning"
-              icon="⏳"
+              icon="◔"
               title="Stores have been notified"
               body={`Bidding starts 10 minutes after posting (${compactCountdown(auction.startsAt - now)}). The first bid then opens a 20 minute reverse-bidding window.`}
             />
@@ -204,7 +204,7 @@ export default function BuyerAuctionRoom() {
               {offers.length === 0 ? (
                 <Card>
                   <EmptyState
-                    icon="⏳"
+                    icon="◔"
                     title="No offers yet"
                     body="Dealers matching this category were notified the moment you published."
                   />

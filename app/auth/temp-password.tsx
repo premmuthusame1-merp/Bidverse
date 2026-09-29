@@ -38,7 +38,7 @@ export default function TempPasswordScreen() {
       <AuthHeader
         title="Set a new password"
         subtitle={`Welcome ${account?.name ?? "dealer"}! Replace the temporary password we e-mailed you.`}
-        logoText="🔑"
+        logoText=""
       />
       <FormBlock>
         <InfoCard
