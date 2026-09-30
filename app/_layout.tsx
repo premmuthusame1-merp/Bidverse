@@ -1,10 +1,11 @@
+import "react-native-reanimated";
 import "@/global.css";
+
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import "react-native-reanimated";
 import { Platform } from "react-native";
 import "@/lib/_core/nativewind-pressable";
 import { ThemeProvider } from "@/lib/theme-provider";
@@ -18,12 +19,14 @@ import type { EdgeInsets, Metrics, Rect } from "react-native-safe-area-context";
 
 import { trpc, createTRPCClient } from "@/lib/trpc";
 import { initManusRuntime, subscribeSafeAreaInsets } from "@/lib/_core/manus-runtime";
+import { ActionSheetHost } from "@/components/ui/action-sheet";
+import { AppProvider } from "@/lib/store";
 
 const DEFAULT_WEB_INSETS: EdgeInsets = { top: 0, right: 0, bottom: 0, left: 0 };
 const DEFAULT_WEB_FRAME: Rect = { x: 0, y: 0, width: 0, height: 0 };
 
 export const unstable_settings = {
-  anchor: "(tabs)",
+  anchor: "index",
 };
 
 export default function RootLayout() {
@@ -33,7 +36,6 @@ export default function RootLayout() {
   const [insets, setInsets] = useState<EdgeInsets>(initialInsets);
   const [frame, setFrame] = useState<Rect>(initialFrame);
 
-  // Initialize Manus runtime for cookie injection from parent container
   useEffect(() => {
     initManusRuntime();
   }, []);
@@ -49,15 +51,12 @@ export default function RootLayout() {
     return () => unsubscribe();
   }, [handleSafeAreaUpdate]);
 
-  // Create clients once and reuse them
   const [queryClient] = useState(
     () =>
       new QueryClient({
         defaultOptions: {
           queries: {
-            // Disable automatic refetching on window focus for mobile
             refetchOnWindowFocus: false,
-            // Retry failed requests once
             retry: 1,
           },
         },
@@ -65,15 +64,14 @@ export default function RootLayout() {
   );
   const [trpcClient] = useState(() => createTRPCClient());
 
-  // Ensure minimum 8px padding for top and bottom on mobile
   const providerInitialMetrics = useMemo(() => {
     const metrics = initialWindowMetrics ?? { insets: initialInsets, frame: initialFrame };
     return {
       ...metrics,
       insets: {
         ...metrics.insets,
-        top: Math.max(metrics.insets.top, 16),
-        bottom: Math.max(metrics.insets.bottom, 12),
+        top: Math.max(metrics.insets.top, 12),
+        bottom: Math.max(metrics.insets.bottom, 10),
       },
     };
   }, [initialInsets, initialFrame]);
@@ -82,13 +80,36 @@ export default function RootLayout() {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <trpc.Provider client={trpcClient} queryClient={queryClient}>
         <QueryClientProvider client={queryClient}>
-          {/* Default to hiding native headers so raw route segments don't appear (e.g. "(tabs)", "products/[id]"). */}
-          {/* If a screen needs the native header, explicitly enable it and set a human title via Stack.Screen options. */}
-          {/* in order for ios apps tab switching to work properly, use presentation: "fullScreenModal" for login page, whenever you decide to use presentation: "modal*/}
-          <Stack screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="(tabs)" />
-            <Stack.Screen name="oauth/callback" />
-          </Stack>
+          <AppProvider>
+            <Stack screenOptions={{ headerShown: false, animation: "slide_from_right" }}>
+              <Stack.Screen name="index" />
+              <Stack.Screen name="auth/buyer-login" />
+              <Stack.Screen name="auth/register" />
+              <Stack.Screen name="auth/dealer-login" />
+              <Stack.Screen name="auth/dealer-register" />
+              <Stack.Screen name="auth/forgot-password" />
+              <Stack.Screen name="auth/temp-password" />
+              <Stack.Screen name="user/home" />
+              <Stack.Screen name="user/auctions" />
+              <Stack.Screen name="user/new-auction" />
+              <Stack.Screen name="user/auction/[id]" />
+              <Stack.Screen name="user/special-deals" />
+              <Stack.Screen name="user/profile" />
+              <Stack.Screen name="dealer/home" />
+              <Stack.Screen name="dealer/chat/[id]" />
+              <Stack.Screen name="dealer/post-product" />
+              <Stack.Screen name="dealer/products" />
+              <Stack.Screen name="dealer/settings" />
+              <Stack.Screen name="admin/dashboard" />
+              <Stack.Screen name="admin/category-requests" />
+              <Stack.Screen name="admin/auctions" />
+              <Stack.Screen name="admin/mailbox" />
+              <Stack.Screen name="notifications" />
+              <Stack.Screen name="mailbox" />
+              <Stack.Screen name="oauth/callback" />
+            </Stack>
+            <ActionSheetHost />
+          </AppProvider>
           <StatusBar style="auto" />
         </QueryClientProvider>
       </trpc.Provider>
@@ -102,9 +123,7 @@ export default function RootLayout() {
       <ThemeProvider>
         <SafeAreaProvider initialMetrics={providerInitialMetrics}>
           <SafeAreaFrameContext.Provider value={frame}>
-            <SafeAreaInsetsContext.Provider value={insets}>
-              {content}
-            </SafeAreaInsetsContext.Provider>
+            <SafeAreaInsetsContext.Provider value={insets}>{content}</SafeAreaInsetsContext.Provider>
           </SafeAreaFrameContext.Provider>
         </SafeAreaProvider>
       </ThemeProvider>

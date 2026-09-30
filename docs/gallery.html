@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>BidVerse — app walkthrough</title>
+<style>
+  :root {
+    --brand: #0F8B8D;
+    --brand-dark: #0F6F71;
+    --bg: #F8FAFA;
+    --card: #FFFFFF;
+    --border: #E4E8E8;
+    --text: #1A1D1F;
+    --muted: #6F767E;
+    --faint: #9BA4AE;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 15px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  header {
+    background: linear-gradient(135deg, #0F8B8D 0%, #0F6F71 100%);
+    color: #fff;
+    padding: 44px 28px 38px;
+  }
+  header .wrap { max-width: 1180px; margin: 0 auto; }
+  header .kicker { font-size: 11px; letter-spacing: 2px; font-weight: 800; color: #BFEDEC; }
+  header h1 { margin: 10px 0 8px; font-size: 34px; letter-spacing: -0.6px; }
+  header p { margin: 0; color: #D6F5F3; max-width: 720px; }
+  header .meta { margin-top: 18px; font-size: 13px; color: #BFEDEC; }
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(255,255,255,0.96);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(8px);
+    padding: 12px 20px;
+    display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;
+  }
+  nav a {
+    color: var(--brand-dark); text-decoration: none; font-size: 13px; font-weight: 700;
+    padding: 7px 13px; border-radius: 20px; background: #E6F5F5;
+  }
+  nav a:hover { background: var(--brand); color: #fff; }
+  main { max-width: 1180px; margin: 0 auto; padding: 26px 20px 80px; }
+  section { margin-top: 42px; }
+  section h2 { font-size: 22px; margin: 0 0 6px; }
+  .blurb { color: var(--muted); margin: 0 0 20px; max-width: 900px; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(268px, 1fr));
+    gap: 22px;
+  }
+  .card { margin: 0; background: var(--card); border: 1px solid var(--border); border-radius: 18px; overflow: hidden; }
+  .frame { background: #0d1117; padding: 10px; display: flex; justify-content: center; }
+  .frame img { width: 100%; max-width: 300px; height: auto; border-radius: 12px; display: block; }
+  figcaption { padding: 12px 14px 15px; display: flex; flex-direction: column; gap: 4px; }
+  .file {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 10px; color: var(--faint);
+  }
+  .cap { font-size: 13.5px; font-weight: 700; }
+  .note { font-size: 12px; color: var(--muted); }
+  footer { border-top: 1px solid var(--border); padding: 26px 20px 60px; text-align: center; color: var(--muted); font-size: 13px; }
+  footer code { background: #E6F5F5; padding: 2px 6px; border-radius: 6px; color: var(--brand-dark); }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="kicker">BIDVERSE · APP WALKTHROUGH</div>
+    <h1>Reverse auctions, screen by screen</h1>
+    <p>
+      These are real screenshots of the running application, captured in a Chromium browser at a
+      420&nbsp;×&nbsp;900 mobile viewport. Nothing here is a mock-up — each frame comes from the
+      live Expo web build of this repository.
+    </p>
+    <div class="meta">
+      47 screens · buyer, dealer and super-admin flows ·
+      screenshots in <code>docs/screenshots/</code> · rebuild with <code>node scripts/build-gallery.mjs</code>
+    </div>
+  </div>
+</header>
+<nav><a href="#start">Start page and the two logins</a><a href="#dealer-onboarding">Dealer registration → verification → issued login</a><a href="#password">Forgot password / reset password</a><a href="#buyer">Normal user (buyer) experience</a><a href="#auction">The auction room — the buyer watches live</a><a href="#dealer-home">Dealer home, participated auctions and posting</a><a href="#admin">Super admin console</a></nav>
+<main>
+    <section id="start">
+      <h2>1 · Start page and the two logins</h2>
+      <p class="blurb">The first screen offers a separate login for store owners and for the customers who ask for the product, plus registration for both.</p>
+      <div class="grid">
+        <figure class="card">
+          <div class="frame">
+            <img src="./screenshots/01-splash.png" alt="Buyer + dealer entry points on one screen" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="file">01-splash</span>
+            <span class="cap">Buyer + dealer entry points on one screen</span>
+            <span class="note">Splash: separate buyer and dealer logins</span>
+          </figcaption>
+        </figure>
+        <figure class="card">
+          <div class="frame">
+            <img src="./screenshots/10-buyer-login.png" alt="Normal user login" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="file">10-buyer-login</span>
+            <span class="cap">Normal user login</span>
+            <span class="note">Buyer login</span>
+          </figcaption>
+        </figure>
+        <figure class="card">
+          <div class="frame">
+            <img src="./screenshots/02-dealer-login.png" alt="Dealer login — the super admin signs in here too" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="file">02-dealer-login</span>
+            <span class="cap">Dealer login — the super admin signs in here too</span>
+            <span class="note">Dealer login (super admin signs in here too)</span>
+          </figcaption>
+        </figure></div>
+    </section>
+    <section id="dealer-onboarding">
+      <h2>2 · Dealer registration → verification → issued login</h2>
+      <p class="blurb">PAN, Aadhaar, GST, authorised-store certificate, store image, address, category selection and the recommended admin username. Submitting shows “Will get the login after the approve within 24 Hours”.</p>
+      <div class="grid">
+        <figure class="card">
+          <div class="frame">
+            <img src="./screenshots/03-dealer-register-step1.png" alt="Step 1 — basic info and the recommended username" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="file">03-dealer-register-step1</span>
+            <span class="cap">Step 1 — basic info and the recommended username</span>
+            <span class="note">Dealer registration · basic info</span>
+          </figcaption>
+        </figure>
+        <figure class="card">
+          <div class="frame">
+            <img src="./screenshots/04-dealer-register-documents.png" alt="Step 2 — documents: PAN, Aadhaar, GST, certificates, store image" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="file">04-dealer-register-documents</span>
+            <span class="cap">Step 2 — documents: PAN, Aadhaar, GST, certificates, store image</span>
+            <span class="note">Documents: PAN, Aadhaar, GST, store image</span>
+          </figcaption>
+        </figure>
+        <figure class="card">
+          <div class="frame">
+            <img src="./screenshots/05-dealer-register-business.png" alt="Step 3 — store address and location" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="file">05-dealer-register-business</span>
+            <span class="cap">Step 3 — store address and location</span>
+            <span class="note">Store address and location for nearby notifications</span>
+          </figcaption>
+        </figure>
+        <figure class="card">
+          <div class="frame">
+            <img src="./screenshots/06-dealer-register-categories.png" alt="Step 4 — categories the dealer may deal in, plus review" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="file">06-dealer-register-categories</span>
+            <span class="cap">Step 4 — categories the dealer may deal in, plus review</span>
+            <span class="note">Category selection + review</span>
+          </figcaption>
+        </figure>
+        <figure class="card">
+          <div class="frame">
+            <img src="./screenshots/07-dealer-register-done.png" alt="“Will get the login after the approve within 24 Hours”" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="file">07-dealer-register-done</span>
+            <span class="cap">“Will get the login after the approve within 24 Hours”</span>
+            
+          </figcaption>
+        </figure>
+        <figure class="card">
+          <div class="frame">
+            <img src="./screenshots/36-dealer-registration-submitted.png" alt="The dealer now sits in the admin queue" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="file">36-dealer-registration-submitted</span>
+            <span class="cap">The dealer now sits in the admin queue</span>
+            <span class="note">New registration pending verification</span>
+          </figcaption>
+        </figure></div>
+    </section>
+    <section id="password">
+      <h2>3 · Forgot password / reset password</h2>
+      <p class="blurb">Both entry points run the same flow: request → six-digit code e-mailed (10 minute validity) → verify → set and confirm the new password.</p>
+      <div class="grid">
+        <figure class="card">
+          <div class="frame">
+            <img src="./screenshots/08-forgot-password.png" alt="Step 1 — enter the registered e-mail or dealer username" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="file">08-forgot-password</span>
+            <span class="cap">Step 1 — enter the registered e-mail or dealer username</span>
+            <span class="note">Password reset: request a verification code</span>
+          </figcaption>
+        </figure>
+        <figure class="card">
+          <div class="frame">
+            <img src="./screenshots/09-reset-code.png" alt="Step 2 — the verification code e-mail" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="file">09-reset-code</span>
+            <span class="cap">Step 2 — the verification code e-mail</span>
+            <span class="note">6-digit code e-mailed (sandbox code shown)</span>
+          </figcaption>
+        </figure>
+        <figure class="card">
+          <div class="frame">
+            <img src="./screenshots/45-dealer-first-login.png" alt="First login with the admin-issued temporary password" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="file">45-dealer-first-login</span>
+            <span class="cap">First login with the admin-issued temporary password</span>
+            <span class="note">First login with the temporary password forces a reset</span>
+          </figcaption>
+        </figure></div>
+    </section>
+    <section id="buyer">
+      <h2>4 · Normal user (buyer) experience</h2>
+      <p class="blurb">Dealer products by category, top deals of the week, special deals with days-left counters, and the auctions block with previous auctions plus “start the new auction”.</p>
+      <div class="grid">
+        <figure class="card">
+          <div class="frame">
+            <img src="./screenshots/11-buyer-home.png" alt="Home — hero, live auctions, top deals of the week" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="file">11-buyer-home</span>
+            <span class="cap">Home — hero, live auctions, top deals of the week</span>
+            <span class="note">Buyer home: hero, live auctions, top deals</span>
+          </figcaption>
+        </figure>
+        <figure class="card">
+          <div class="frame">
+            <img src="./screenshots/12-buyer-home-categories.png" alt="Browse by category and how an auction works" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="file">12-buyer-home-categories</span>
+            <span class="cap">Browse by category and how an auction works</span>
+            <span class="note">Browse by category, special deals and how an auction works</span>
+          </figcaption>
+        </figure>
+        <figure class="card">
+          <div class="frame">
+            <img src="./screenshots/13-new-auction.png" alt="Publish an auction: product, category, specs, days open, deal amount, referral link" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="file">13-new-auction</span>
+            <span class="cap">Publish an auction: product, category, specs, days open, deal amount, referral link</span>
+            <span class="note">Publish auction: category, days open, deal amount</span>
+          </figcaption>
+        </figure>
+        <figure class="card">
+          <div class="frame">
+            <img src="./screenshots/14-auction-published.png" alt="Matching stores notified; bidding opens 10 minutes later" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="file">14-auction-published</span>
+            <span class="cap">Matching stores notified; bidding opens 10 minutes later</span>
+            <span class="note">Stores notified, bidding opens in 10 minutes</span>
+          </figcaption>
+        </figure>
+        <figure class="card">
+          <div class="frame">
+            <img src="./screenshots/15-buyer-auctions-live.png" alt="My auctions — live" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="file">15-buyer-auctions-live</span>
+            <span class="cap">My auctions — live</span>
+            <span class="note">My auctions · live</span>
+          </figcaption>
+        </figure>
+        <figure class="card">
+          <div class="frame">
+            <img src="./screenshots/16-buyer-auctions-previous.png" alt="Previous auctions with the full detail" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="file">16-buyer-auctions-previous</span>
+            <span class="cap">Previous auctions with the full detail</span>
+            <span class="note">Previous auctions with full detail</span>
+          </figcaption>
+        </figure>
+        <figure class="card">
+          <div class="frame">
+            <img src="./screenshots/20-special-deals.png" alt="Special deals with days-left counters and a category filter" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="file">20-special-deals</span>
+            <span class="cap">Special deals with days-left counters and a category filter</span>
+            <span class="note">Special deals with days-left counters + category filter</span>
+          </figcaption>
+        </figure>
+        <figure class="card">
+          <div class="frame">
+            <img src="./screenshots/22-notifications.png" alt="Live deal notifications" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="file">22-notifications</span>
+            <span class="cap">Live deal notifications</span>
+            
+          </figcaption>
+        </figure>
+        <figure class="card">
+          <div class="frame">
+            <img src="./screenshots/23-mailbox.png" alt="Every transactional e-mail" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="file">23-mailbox</span>
+            <span class="cap">Every transactional e-mail</span>
+            <span class="note">Sandbox mailbox: every transactional e-mail</span>
+          </figcaption>
+        </figure>
+        <figure class="card">
+          <div class="frame">
+            <img src="./screenshots/21-buyer-profile.png" alt="Buyer profile" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="file">21-buyer-profile</span>
+            <span class="cap">Buyer profile</span>
+            
+          </figcaption>
+        </figure></div>
+    </section>
+    <section id="auction">
+      <h2>5 · The auction room — the buyer watches live</h2>
+      <p class="blurb">Timer based on the closing time the user set, every reverse bid in order, the group chat with all participating stores, and the full auction detail.</p>
+      <div class="grid">
+        <figure class="card">
+          <div class="frame">
+            <img src="./screenshots/17-auction-room-offers.png" alt="Live offers with freebies and special mentions" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="file">17-auction-room-offers</span>
+            <span class="cap">Live offers with freebies and special mentions</span>
+            <span class="note">Live auction room: timer, offer feed, best offer</span>
+          </figcaption>
+        </figure>
+        <figure class="card">
+          <div class="frame">
+            <img src="./screenshots/18-auction-room-chat.png" alt="The group chat for that product" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="file">18-auction-room-chat</span>
+            <span class="cap">The group chat for that product</span>
+            <span class="note">Live group chat with all participating stores</span>
+          </figcaption>
+        </figure>
+        <figure class="card">
+          <div class="frame">
+            <img src="./screenshots/19-auction-detail.png" alt="Full detail: timings, extensions, offers, winner" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="file">19-auction-detail</span>
+            <span class="cap">Full detail: timings, extensions, offers, winner</span>
+            <span class="note">Full auction detail and timings</span>
+          </figcaption>
+        </figure></div>
+    </section>
+    <section id="dealer-home">
+      <h2>6 · Dealer home, participated auctions and posting</h2>
+      <p class="blurb">Live auctions filtered to the dealer's registered categories; posting a deal moves the auction into Participated, which is sorted by the running timer.</p>
+      <div class="grid">
+        <figure class="card">
+          <div class="frame">
+            <img src="./screenshots/23-dealer-home-live.png" alt="Dealer home — category-matched live auctions" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="file">23-dealer-home-live</span>
+            <span class="cap">Dealer home — category-matched live auctions</span>
+            <span class="note">Dealer home: category-matched live auctions</span>
+          </figcaption>
+        </figure>
+        <figure class="card">
+          <div class="frame">
+            <img src="./screenshots/24-dealer-participated.png" alt="Participated auctions sorted by the chat timer" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="file">24-dealer-participated</span>
+            <span class="cap">Participated auctions sorted by the chat timer</span>
+            <span class="note">Participated auctions sorted by the running chat timer</span>
+          </figcaption>
+        </figure>
+        <figure class="card">
+          <div class="frame">
+            <img src="./screenshots/25-dealer-my-posts.png" alt="Previously posted deals and products" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="file">25-dealer-my-posts</span>
+            <span class="cap">Previously posted deals and products</span>
+            <span class="note">Previously posted products and deals</span>
+          </figcaption>
+        </figure>
+        <figure class="card">
+          <div class="frame">
+            <img src="./screenshots/26-dealer-chat-room.png" alt="Group chat for one auction, with the buyer requirement" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="file">26-dealer-chat-room</span>
+            <span class="cap">Group chat for one auction, with the buyer requirement</span>
+            <span class="note">Auction chat: buyer requirement, timer, offers, outbid state</span>
+          </figcaption>
+        </figure>
+        <figure class="card">
+          <div class="frame">
+            <img src="./screenshots/27-dealer-bid-form.png" alt="Reverse bid: amount + special freebies + special mention" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="file">27-dealer-bid-form</span>
+            <span class="cap">Reverse bid: amount + special freebies + special mention</span>
+            <span class="note">Reverse bid: amount plus freebies and special mentions</span>
+          </figcaption>
+        </figure>
+        <figure class="card">
+          <div class="frame">
+            <img src="./screenshots/28-dealer-bid-filled.png" alt="Quick freebies and the must-be-lower rule" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="file">28-dealer-bid-filled</span>
+            <span class="cap">Quick freebies and the must-be-lower rule</span>
+            <span class="note">Quick freebie fills and the lower-than-best-price rule</span>
+          </figcaption>
+        </figure>
+        <figure class="card">
+          <div class="frame">
+            <img src="./screenshots/29-dealer-deal-posted.png" alt="Deal posted live; buyer notified instantly" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="file">29-dealer-deal-posted</span>
+            <span class="cap">Deal posted live; buyer notified instantly</span>
+            <span class="note">Deal posted live in the group chat, buyer notified</span>
+          </figcaption>
+        </figure>
+        <figure class="card">
+          <div class="frame">
+            <img src="./screenshots/30-dealer-post-product.png" alt="Post a product — one entry, one category" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="file">30-dealer-post-product</span>
+            <span class="cap">Post a product — one entry, one category</span>
+            <span class="note">Post a product: one entry, one category</span>
+          </figcaption>
+        </figure>
+        <figure class="card">
+          <div class="frame">
+            <img src="./screenshots/31-dealer-special-deal.png" alt="Special deal switch asks for days left" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="file">31-dealer-special-deal</span>
+            <span class="cap">Special deal switch asks for days left</span>
+            <span class="note">Special deal switch with the days-left entry</span>
+          </figcaption>
+        </figure>
+        <figure class="card">
+          <div class="frame">
+            <img src="./screenshots/32-dealer-product-published.png" alt="Published with a days-left counter" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="file">32-dealer-product-published</span>
+            <span class="cap">Published with a days-left counter</span>
+            <span class="note">Product published with the days-left counter</span>
+          </figcaption>
+        </figure>
+        <figure class="card">
+          <div class="frame">
+            <img src="./screenshots/33-dealer-products.png" alt="Product list" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="file">33-dealer-products</span>
+            <span class="cap">Product list</span>
+            <span class="note">Product list with special-deal days left</span>
+          </figcaption>
+        </figure>
+        <figure class="card">
+          <div class="frame">
+            <img src="./screenshots/34-dealer-settings.png" alt="Settings: approved categories and profile" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="file">34-dealer-settings</span>
+            <span class="cap">Settings: approved categories and profile</span>
+            <span class="note">Settings: approved categories + category request to admin</span>
+          </figcaption>
+        </figure>
+        <figure class="card">
+          <div class="frame">
+            <img src="./screenshots/35-dealer-category-request.png" alt="Requesting an extra category from the super admin" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="file">35-dealer-category-request</span>
+            <span class="cap">Requesting an extra category from the super admin</span>
+            <span class="note">Category request raised for super admin approval</span>
+          </figcaption>
+        </figure></div>
+    </section>
+    <section id="admin">
+      <h2>7 · Super admin console</h2>
+      <p class="blurb">Verification of dealers (approve issues the username + temporary password by e-mail), category requests, the auction monitor and every outbound e-mail.</p>
+      <div class="grid">
+        <figure class="card">
+          <div class="frame">
+            <img src="./screenshots/37-admin-dashboard.png" alt="Verification desk with documents and requested categories" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="file">37-admin-dashboard</span>
+            <span class="cap">Verification desk with documents and requested categories</span>
+            <span class="note">Super admin verification desk, dealer awaiting verification</span>
+          </figcaption>
+        </figure>
+        <figure class="card">
+          <div class="frame">
+            <img src="./screenshots/38-admin-approved.png" alt="Approval issues the login and e-mails the temporary password" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="file">38-admin-approved</span>
+            <span class="cap">Approval issues the login and e-mails the temporary password</span>
+            <span class="note">Approval e-mail with username and temporary password issued</span>
+          </figcaption>
+        </figure>
+        <figure class="card">
+          <div class="frame">
+            <img src="./screenshots/39-admin-category-requests.png" alt="Category request queue" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="file">39-admin-category-requests</span>
+            <span class="cap">Category request queue</span>
+            
+          </figcaption>
+        </figure>
+        <figure class="card">
+          <div class="frame">
+            <img src="./screenshots/40-admin-category-approved.png" alt="Category added to the dealer profile" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="file">40-admin-category-approved</span>
+            <span class="cap">Category added to the dealer profile</span>
+            
+          </figcaption>
+        </figure>
+        <figure class="card">
+          <div class="frame">
+            <img src="./screenshots/41-admin-auctions.png" alt="Auction monitor with timers and best offers" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="file">41-admin-auctions</span>
+            <span class="cap">Auction monitor with timers and best offers</span>
+            <span class="note">Auction monitor</span>
+          </figcaption>
+        </figure>
+        <figure class="card">
+          <div class="frame">
+            <img src="./screenshots/42-admin-auction-detail.png" alt="Auction detail with every offer" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="file">42-admin-auction-detail</span>
+            <span class="cap">Auction detail with every offer</span>
+            
+          </figcaption>
+        </figure>
+        <figure class="card">
+          <div class="frame">
+            <img src="./screenshots/43-admin-mailbox.png" alt="Outbound mailbox" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="file">43-admin-mailbox</span>
+            <span class="cap">Outbound mailbox</span>
+            <span class="note">Outbound mailbox: every transactional e-mail</span>
+          </figcaption>
+        </figure>
+        <figure class="card">
+          <div class="frame">
+            <img src="./screenshots/44-admin-mailbox-approvals.png" alt="Approval e-mails carrying the temporary passwords" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="file">44-admin-mailbox-approvals</span>
+            <span class="cap">Approval e-mails carrying the temporary passwords</span>
+            <span class="note">Approval e-mails with temporary passwords</span>
+          </figcaption>
+        </figure>
+        <figure class="card">
+          <div class="frame">
+            <img src="./screenshots/46-dealer-new-home.png" alt="The newly approved dealer, signed in on their own home page" loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="file">46-dealer-new-home</span>
+            <span class="cap">The newly approved dealer, signed in on their own home page</span>
+            <span class="note">Newly approved dealer lands on their own home page</span>
+          </figcaption>
+        </figure></div>
+    </section></main>
+<footer>
+  BidVerse — Expo Router (React Native + web) · live preview on the dev server ·
+  regenerate the screenshots with the Playwright capture scripts.
+</footer>
+</body>
+</html>

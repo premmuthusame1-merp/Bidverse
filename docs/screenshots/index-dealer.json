@@ -1,0 +1,98 @@
+[
+  {
+    "name": "23-dealer-home-live",
+    "note": "Dealer home: category-matched live auctions"
+  },
+  {
+    "name": "24-dealer-participated",
+    "note": "Participated auctions sorted by the running chat timer"
+  },
+  {
+    "name": "25-dealer-my-posts",
+    "note": "Previously posted products and deals"
+  },
+  {
+    "name": "26-dealer-chat-room",
+    "note": "Auction chat: buyer requirement, timer, offers, outbid state"
+  },
+  {
+    "name": "27-dealer-bid-form",
+    "note": "Reverse bid: amount plus freebies and special mentions"
+  },
+  {
+    "name": "28-dealer-bid-filled",
+    "note": "Quick freebie fills and the lower-than-best-price rule"
+  },
+  {
+    "name": "29-dealer-deal-posted",
+    "note": "Deal posted live in the group chat, buyer notified"
+  },
+  {
+    "name": "30-dealer-post-product",
+    "note": "Post a product: one entry, one category"
+  },
+  {
+    "name": "31-dealer-special-deal",
+    "note": "Special deal switch with the days-left entry"
+  },
+  {
+    "name": "32-dealer-product-published",
+    "note": "Product published with the days-left counter"
+  },
+  {
+    "name": "33-dealer-products",
+    "note": "Product list with special-deal days left"
+  },
+  {
+    "name": "34-dealer-settings",
+    "note": "Settings: approved categories + category request to admin"
+  },
+  {
+    "name": "35-dealer-category-request",
+    "note": "Category request raised for super admin approval"
+  },
+  {
+    "name": "36-dealer-registration-submitted",
+    "note": "New registration pending verification"
+  },
+  {
+    "name": "37-admin-dashboard",
+    "note": "Super admin verification desk, dealer awaiting verification"
+  },
+  {
+    "name": "38-admin-approved",
+    "note": "Approval e-mail with username and temporary password issued"
+  },
+  {
+    "name": "39-admin-category-requests",
+    "note": "Category request queue"
+  },
+  {
+    "name": "40-admin-category-approved",
+    "note": "Category added to the dealer profile"
+  },
+  {
+    "name": "41-admin-auctions",
+    "note": "Auction monitor"
+  },
+  {
+    "name": "42-admin-auction-detail",
+    "note": "Auction detail with every offer"
+  },
+  {
+    "name": "43-admin-mailbox",
+    "note": "Outbound mailbox: every transactional e-mail"
+  },
+  {
+    "name": "44-admin-mailbox-approvals",
+    "note": "Approval e-mails with temporary passwords"
+  },
+  {
+    "name": "45-dealer-first-login",
+    "note": "First login with the temporary password forces a reset"
+  },
+  {
+    "name": "46-dealer-new-home",
+    "note": "Newly approved dealer lands on their own home page"
+  }
+]

@@ -1,0 +1,94 @@
+[
+  {
+    "name": "01-splash",
+    "note": "Splash: separate buyer and dealer logins"
+  },
+  {
+    "name": "02-dealer-login",
+    "note": "Dealer login (super admin signs in here too)"
+  },
+  {
+    "name": "03-dealer-register-step1",
+    "note": "Dealer registration · basic info"
+  },
+  {
+    "name": "04-dealer-register-documents",
+    "note": "Documents: PAN, Aadhaar, GST, store image"
+  },
+  {
+    "name": "05-dealer-register-business",
+    "note": "Store address and location for nearby notifications"
+  },
+  {
+    "name": "06-dealer-register-categories",
+    "note": "Category selection + review"
+  },
+  {
+    "name": "07-dealer-register-done",
+    "note": "“Will get the login after the approve within 24 Hours”"
+  },
+  {
+    "name": "08-forgot-password",
+    "note": "Password reset: request a verification code"
+  },
+  {
+    "name": "09-reset-code",
+    "note": "6-digit code e-mailed (sandbox code shown)"
+  },
+  {
+    "name": "10-buyer-login",
+    "note": "Buyer login"
+  },
+  {
+    "name": "11-buyer-home",
+    "note": "Buyer home: hero, live auctions, top deals"
+  },
+  {
+    "name": "12-buyer-home-categories",
+    "note": "Browse by category, special deals and how an auction works"
+  },
+  {
+    "name": "13-new-auction",
+    "note": "Publish auction: category, days open, deal amount"
+  },
+  {
+    "name": "14-auction-published",
+    "note": "Stores notified, bidding opens in 10 minutes"
+  },
+  {
+    "name": "15-buyer-auctions-live",
+    "note": "My auctions · live"
+  },
+  {
+    "name": "16-buyer-auctions-previous",
+    "note": "Previous auctions with full detail"
+  },
+  {
+    "name": "17-auction-room-offers",
+    "note": "Live auction room: timer, offer feed, best offer"
+  },
+  {
+    "name": "18-auction-room-chat",
+    "note": "Live group chat with all participating stores"
+  },
+  {
+    "name": "19-auction-detail",
+    "note": "Full auction detail and timings"
+  },
+  {
+    "name": "20-special-deals",
+    "note": "Special deals with days-left counters + category filter"
+  },
+  {
+    "name": "21-buyer-profile",
+    "note": "Buyer profile"
+  },
+  {
+    "name": "22-notifications",
+    "note": "Live deal notifications"
+  },
+  {
+    "name": "23-mailbox",
+    "note": "Sandbox mailbox: every transactional e-mail"
+  }
+]
